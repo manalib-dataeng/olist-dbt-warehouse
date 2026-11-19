@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: stg_orders
+    columns:
+      - name: order_id
+        data_tests: [unique, not_null]
+  - name: stg_customers
+    columns:
+      - name: customer_id
+        data_tests: [unique, not_null]
+  - name: stg_products
+    columns:
+      - name: product_id
+        data_tests: [unique, not_null]
+  - name: stg_sellers
+    columns:
+      - name: seller_id
+        data_tests: [unique, not_null]
+  - name: stg_order_items
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [order_id, order_item_id]
+  - name: stg_payments
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [order_id, payment_sequential]

@@ -1,0 +1,13 @@
+version: 2
+
+exposures:
+  - name: olist_dashboard
+    type: dashboard
+    maturity: low
+    description: "Monthly revenue, seller late-delivery rate, repeat purchase rate."
+    owner:
+      name: Manali Bhave
+    depends_on:
+      - ref('fct_orders')
+      - ref('fct_order_items')
+      - ref('dim_sellers')
